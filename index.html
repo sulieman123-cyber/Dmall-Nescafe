@@ -40,7 +40,6 @@
         /* Hide all pages by default */
         .page-section {
             display: none;
-            /* Remove default animation here to handle it via JS scroll reveal */
         }
 
         /* Show the active page */
@@ -48,7 +47,7 @@
             display: block;
         }
 
-        /* --- UPDATED NAVIGATION BUTTON STYLES --- */
+        /* --- NAVIGATION BUTTON STYLES --- */
         .nav-link {
             padding: 8px 20px;
             border-radius: 9999px; /* Pill shape */
@@ -179,6 +178,8 @@
                 <input type="text" id="loginName" placeholder="Username" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-500 transition-colors">
                 <!-- Password Input -->
                 <input type="password" id="loginPassword" placeholder="Password" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-500 transition-colors">
+                <!-- Phone Input (Only for signup) -->
+                <input type="tel" id="loginPhone" placeholder="Phone Number (for Order Verification)" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-500 transition-colors hidden">
                 
                 <!-- Login Button -->
                 <button id="loginBtn" onclick="login()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-lg uppercase transition duration-300 shadow-lg">
@@ -222,31 +223,16 @@
                 
                 <div class="flex items-center gap-6">
                     <!-- Desktop Buttons -->
-                    <div class="hidden md:flex space-x-4">
-                        <a href="#" class="nav-link" onclick="showPage('home')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-                              <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                    <div class="hidden md:flex space-x-2">
+                        <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+                        <a href="#" class="nav-link" onclick="showPage('menu')">Menu</a>
+                        <a href="#" class="nav-link" onclick="showPage('profile')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                             </svg>
-                            Home
+                            Profile
                         </a>
-                        <a href="#" class="nav-link" onclick="showPage('menu')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cup-straw" viewBox="0 0 16 16">
-                              <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367 1.28.756 1.681 1.82.68 3.017-1.246 1.492-4.012 1.57-6.088.8-1.54-.57-2.028-1.532-1.933-2.43.081-.78.73-1.498 1.984-1.928a10.5 10.5 0 0 1 1.7-.426l-.319-1.533-1.683.673a.5.5 0 0 1-.368-.92l1.917-.767a.6.6 0 0 1 .572.063l.35.65 2.5-1A.5.5 0 0 1 13.902.334m-3.965 2.451a.5.5 0 0 1-.613.292l-2.5 1a.5.5 0 0 1-.67-.353l-.33-1.583 2.626-1.05zM12.321 6.318c1.02.437 1.281 1.356.508 2.28C11.666 9.99 9.098 10.208 6.926 9.402c-1.68-.623-2.18-1.574-2.093-2.408.06-.572.508-1.127 1.46-1.481 1.408-.523 3.655-.563 5.428-.195zM4.979 13.908a5 5 0 0 1-.979-3.46c.553.386 1.956.602 3.636.331.336.534.629 1.058.9 1.58.583 1.12 1.096 2.103 1.34 2.876a.5.5 0 0 1-.956.294c-.195-.62-.63-1.46-1.162-2.484-.075.138-.153.277-.233.417-1.48 2.666-3.232.85-3.232.85"/>
-                            </svg>
-                            Menu
-                        </a>
-                        <a href="#" class="nav-link" onclick="showPage('about')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
-                            </svg>
-                            About
-                        </a>
-                        <a href="#" class="nav-link" onclick="showPage('contact')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                            </svg>
-                            Contact
-                        </a>
+                        <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
                     </div>
                     
                     <!-- Cart Button -->
@@ -265,7 +251,7 @@
             <div id="mobileMenu" class="hidden md:hidden flex-col items-center bg-stone-700 py-4 transition-all duration-300">
                 <a href="#" class="nav-link py-2" onclick="showPage('home'); toggleMobileMenu();">Home</a>
                 <a href="#" class="nav-link py-2" onclick="showPage('menu'); toggleMobileMenu();">Menu</a>
-                <a href="#" class="nav-link py-2" onclick="showPage('about'); toggleMobileMenu();">About Us</a>
+                <a href="#" class="nav-link py-2" onclick="showPage('profile'); toggleMobileMenu();">Profile</a>
                 <a href="#" class="nav-link py-2" onclick="showPage('contact'); toggleMobileMenu();">Contact</a>
             </div>
         </header>
@@ -288,67 +274,38 @@
                 <!-- Featured Products -->
                 <section class="py-20 bg-gray-100">
                     <div class="container mx-auto px-6 reveal">
-                        <h2 class="text-3xl font-bold text-center text-stone-800 mb-12 flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-star-fill text-yellow-500" viewBox="0 0 16 16">
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                            Featured Products
-                        </h2>
+                        <h2 class="text-3xl font-bold text-center text-stone-800 mb-12 flex items-center justify-center gap-2">Featured Products</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                             <!-- Card 1 -->
                             <div class="bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col">
                                 <img src="https://placehold.co/400x300/5d4037/white?text=Espresso" alt="Espresso" class="w-full h-48 object-cover">
                                 <div class="p-6 flex-grow flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-bold mb-2">Espresso</h3>
-                                        <p class="text-gray-600 mb-4">Rich, bold, and pure.</p>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xl font-bold text-stone-800">₹120</span>
-                                        <button onclick="addToCart('Espresso', 120)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md transform active:scale-95">Add to Cart</button>
-                                    </div>
+                                    <div><h3 class="text-xl font-bold mb-2">Espresso</h3><p class="text-gray-600 mb-4">Rich, bold, and pure.</p></div>
+                                    <div class="flex justify-between items-center"><span class="text-xl font-bold text-stone-800">₹120</span><button onclick="addToCart('Espresso', 120)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md">Add to Cart</button></div>
                                 </div>
                             </div>
                             <!-- Card 2 -->
                             <div class="bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col">
                                 <img src="https://placehold.co/400x300/f4f1eb/333?text=Latte" alt="Latte" class="w-full h-48 object-cover">
                                 <div class="p-6 flex-grow flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-bold mb-2">Latte</h3>
-                                        <p class="text-gray-600 mb-4">Smooth, creamy, and comforting.</p>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xl font-bold text-stone-800">₹180</span>
-                                        <button onclick="addToCart('Latte', 180)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md transform active:scale-95">Add to Cart</button>
-                                    </div>
+                                    <div><h3 class="text-xl font-bold mb-2">Latte</h3><p class="text-gray-600 mb-4">Smooth, creamy.</p></div>
+                                    <div class="flex justify-between items-center"><span class="text-xl font-bold text-stone-800">₹180</span><button onclick="addToCart('Latte', 180)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md">Add to Cart</button></div>
                                 </div>
                             </div>
                             <!-- Card 3 -->
                             <div class="bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col">
                                 <img src="https://placehold.co/400x300/c0a080/white?text=Cappuccino" alt="Cappuccino" class="w-full h-48 object-cover">
                                 <div class="p-6 flex-grow flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-bold mb-2">Cappuccino</h3>
-                                        <p class="text-gray-600 mb-4">Velvety foam and deep flavor.</p>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xl font-bold text-stone-800">₹180</span>
-                                        <button onclick="addToCart('Cappuccino', 180)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md transform active:scale-95">Add to Cart</button>
-                                    </div>
+                                    <div><h3 class="text-xl font-bold mb-2">Cappuccino</h3><p class="text-gray-600 mb-4">Velvety foam and deep flavor.</p></div>
+                                    <div class="flex justify-between items-center"><span class="text-xl font-bold text-stone-800">₹180</span><button onclick="addToCart('Cappuccino', 180)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md">Add to Cart</button></div>
                                 </div>
                             </div>
                             <!-- Card 4 -->
                             <div class="bg-white rounded-lg shadow-lg overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-2xl flex flex-col">
                                 <img src="https://placehold.co/400x300/111/white?text=Cold+Brew" alt="Cold Brew" class="w-full h-48 object-cover">
                                 <div class="p-6 flex-grow flex flex-col justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-bold mb-2">Cold Brew</h3>
-                                        <p class="text-gray-600 mb-4">Iced, smooth, and refreshing.</p>
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-xl font-bold text-stone-800">₹200</span>
-                                        <button onclick="addToCart('Cold Brew', 200)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md transform active:scale-95">Add to Cart</button>
-                                    </div>
+                                    <div><h3 class="text-xl font-bold mb-2">Cold Brew</h3><p class="text-gray-600 mb-4">Iced, smooth, and refreshing.</p></div>
+                                    <div class="flex justify-between items-center"><span class="text-xl font-bold text-stone-800">₹200</span><button onclick="addToCart('Cold Brew', 200)" class="bg-red-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-red-700 transition duration-300 shadow-md">Add to Cart</button></div>
                                 </div>
                             </div>
                         </div>
@@ -389,105 +346,95 @@
                     <div class="container mx-auto px-6">
 
                         <!-- Drinks Section -->
-                        <h2 class="text-3xl font-bold text-stone-800 mb-8 border-b-4 border-red-600 pb-2 inline-flex items-center gap-3 reveal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cup-straw text-red-600" viewBox="0 0 16 16">
-                              <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367 1.28.756 1.681 1.82.68 3.017-1.246 1.492-4.012 1.57-6.088.8-1.54-.57-2.028-1.532-1.933-2.43.081-.78.73-1.498 1.984-1.928a10.5 10.5 0 0 1 1.7-.426l-.319-1.533-1.683.673a.5.5 0 0 1-.368-.92l1.917-.767a.6.6 0 0 1 .572.063l.35.65 2.5-1A.5.5 0 0 1 13.902.334m-3.965 2.451a.5.5 0 0 1-.613.292l-2.5 1a.5.5 0 0 1-.67-.353l-.33-1.583 2.626-1.05zM12.321 6.318c1.02.437 1.281 1.356.508 2.28C11.666 9.99 9.098 10.208 6.926 9.402c-1.68-.623-2.18-1.574-2.093-2.408.06-.572.508-1.127 1.46-1.481 1.408-.523 3.655-.563 5.428-.195zM4.979 13.908a5 5 0 0 1-.979-3.46c.553.386 1.956.602 3.636.331.336.534.629 1.058.9 1.58.583 1.12 1.096 2.103 1.34 2.876a.5.5 0 0 1-.956.294c-.195-.62-.63-1.46-1.162-2.484-.075.138-.153.277-.233.417-1.48 2.666-3.232.85-3.232.85"/>
-                            </svg>
-                            Coffee & Drinks
-                        </h2>
+                        <h2 class="text-3xl font-bold text-stone-800 mb-8 border-b-4 border-red-600 pb-2 inline-flex items-center gap-3 reveal">Coffee & Drinks</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
                             <!-- Menu Item -->
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/5d4037/white?text=Drink" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Cappuccino</h3>
-                                    <p class="text-gray-600 text-sm">Velvety foam and deep flavor.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹180</span>
-                                        <button onclick="addToCart('Cappuccino', 180)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹180</span><button onclick="addToCart('Cappuccino', 180)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/5d4037/white?text=Drink" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Classic Nescafé</h3>
-                                    <p class="text-gray-600 text-sm">The original, rich, and bold.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹150</span>
-                                        <button onclick="addToCart('Classic Nescafé', 150)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹150</span><button onclick="addToCart('Classic Nescafé', 150)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/5d4037/white?text=Drink" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Oreo Milk Shake</h3>
-                                    <p class="text-gray-600 text-sm">Creamy, rich, and delicious.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹170</span>
-                                        <button onclick="addToCart('Oreo Shake', 170)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹170</span><button onclick="addToCart('Oreo Shake', 170)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Snacks Section -->
-                        <h2 class="text-3xl font-bold text-stone-800 mt-16 mb-8 border-b-4 border-red-600 pb-2 inline-flex items-center gap-3 reveal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-egg-fried text-red-600" viewBox="0 0 16 16">
-                              <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                              <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216m-1-.034a1 1 0 0 0 .668.977 1.2 1.2 0 0 1 .541 1.143.8.8 0 0 1-1.054.728.53.53 0 0 0-.528.205 2.5 2.5 0 0 1-4.443.31.55.55 0 0 0-.933.318 3.002 3.002 0 0 1-5.309-2.25l.046-.197a.55.55 0 0 0-.203-.59A4.002 4.002 0 0 1 6.57 2.18c.106.106.275.142.42.084a4.001 4.001 0 0 1 6.007 2.906Z"/>
-                            </svg>
-                            Snacks & Treats
-                        </h2>
+                        <h2 class="text-3xl font-bold text-stone-800 mt-16 mb-8 border-b-4 border-red-600 pb-2 inline-flex items-center gap-3 reveal">Snacks & Treats</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
                             <!-- Snack Item -->
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/d3a680/white?text=Snack" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Paneer Sandwich</h3>
-                                    <p class="text-gray-600 text-sm">Grilled, spicy, and satisfying.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹110</span>
-                                        <button onclick="addToCart('Paneer Sandwich', 110)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹110</span><button onclick="addToCart('Paneer Sandwich', 110)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/d3a680/white?text=Snack" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Veg Sandwich</h3>
-                                    <p class="text-gray-600 text-sm">Fresh veggies, classic taste.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹90</span>
-                                        <button onclick="addToCart('Veg Sandwich', 90)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹90</span><button onclick="addToCart('Veg Sandwich', 90)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                             <div class="bg-gray-50 p-6 rounded-lg shadow-md flex items-center gap-4 hover:shadow-lg transition transform hover:-translate-y-1">
                                 <img src="https://placehold.co/100x100/d3a680/white?text=Snack" class="w-24 h-24 object-cover rounded-lg">
                                 <div class="flex-grow">
                                     <h3 class="text-xl font-bold">Croissant</h3>
-                                    <p class="text-gray-600 text-sm">Buttery, flaky, and fresh.</p>
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="text-lg font-bold text-stone-800">₹100</span>
-                                        <button onclick="addToCart('Croissant', 100)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button>
-                                    </div>
+                                    <div class="flex justify-between items-center mt-2"><span class="text-lg font-bold text-stone-800">₹100</span><button onclick="addToCart('Croissant', 100)" class="bg-stone-800 text-white text-xs font-bold py-1 px-3 rounded hover:bg-stone-900">Add +</button></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Special Combos -->
                         <div class="mt-16 bg-stone-800 text-white p-8 rounded-lg shadow-xl text-center transform hover:scale-[1.01] transition duration-300 reveal">
-                            <h2 class="text-3xl font-bold text-yellow-400 mb-4 flex items-center justify-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-gift-fill" viewBox="0 0 16 16">
-                                  <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.52.52 0 0 0 .023.07M9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9z"/>
-                                </svg>
-                                Special Combos
-                            </h2>
+                            <h2 class="text-3xl font-bold text-yellow-400 mb-4 flex items-center justify-center gap-2">Special Combos</h2>
                             <p class="text-xl">Coffee + Croissant Combo</p>
                             <span class="text-2xl font-bold block mt-2">Just ₹250!</span>
                             <button onclick="addToCart('Coffee+Croissant Combo', 250)" class="mt-6 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition shadow-lg transform active:scale-95">Add Combo</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============== PROFILE PAGE (NEW) =============== -->
+            <section id="page-profile" class="page-section animate-fade-in">
+                <div class="h-64 flex items-center justify-center text-white parallax-bg" style="background-image: url('https://placehold.co/1920x600/333/white?text=My+Profile');">
+                    <h1 class="relative z-10 text-4xl font-black uppercase text-shadow-lg">My Profile</h1>
+                </div>
+                <div class="py-20 bg-white">
+                    <div class="container mx-auto px-6 max-w-2xl">
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200">
+                            <h2 class="text-2xl font-bold text-stone-800 mb-6">Manage Your Details</h2>
+                            <form onsubmit="event.preventDefault(); saveProfile();" class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Name</label>
+                                    <input type="text" id="profileName" class="w-full p-3 border rounded bg-gray-200 cursor-not-allowed" readonly>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Phone Number</label>
+                                    <input type="tel" id="profilePhone" placeholder="Enter your phone number" class="w-full p-3 border rounded focus:border-red-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Delivery Address</label>
+                                    <textarea id="profileAddress" rows="4" placeholder="Enter your full address for delivery" class="w-full p-3 border rounded focus:border-red-500 focus:outline-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-stone-800 text-white font-bold py-3 rounded hover:bg-stone-900 transition">Save Profile</button>
+                            </form>
+                            <p id="profileMessage" class="text-green-600 mt-4 text-center font-bold hidden">Profile saved successfully!</p>
                         </div>
                     </div>
                 </div>
@@ -517,7 +464,6 @@
                     </div>
                     <div>
                         <h2 class="text-3xl font-bold text-stone-800 mb-4">Send Message</h2>
-                        <!-- Updated form to call sendFeedback() -->
                         <form onsubmit="event.preventDefault(); sendFeedback();" class="space-y-4">
                             <input type="text" id="contactName" placeholder="Name" class="w-full border p-3 rounded focus:outline-none focus:border-red-500 transition" required>
                             <textarea id="contactMessage" placeholder="Message" class="w-full border p-3 rounded focus:outline-none focus:border-red-500 transition" rows="3" required></textarea>
@@ -532,24 +478,6 @@
         <!-- Consistent Footer -->
         <footer class="bg-stone-800 text-gray-400 py-12 border-t-4 border-red-600">
             <div class="container mx-auto px-6 text-center">
-                <div class="flex justify-center space-x-8 mb-6">
-                    <!-- Social Media Icons (SVG) -->
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                          <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0m0 1.44c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                          <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
-                        </svg>
-                    </a>
-                </div>
                 <p>&copy; 2025 Dmall Nescafé. All rights reserved.</p>
                 <p class="text-sm mt-4 text-stone-500">All made by Sulieman , Adarsh , Aniket</p>
             </div>
@@ -579,6 +507,21 @@
                 </div>
 
                 <div class="p-4 border-t bg-gray-50">
+                    <!-- DELIVERY OPTIONS -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Order Type:</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="orderType" value="Takeaway" class="mr-2" checked>
+                                Takeaway
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="orderType" value="Delivery" class="mr-2">
+                                Delivery
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-lg font-bold text-stone-700">Total:</span>
                         <span id="cartTotal" class="text-2xl font-bold text-red-600">₹0</span>
@@ -602,6 +545,8 @@
     <script>
         // --- LOGIN / REGISTRATION LOGIC ---
         let currentUser = "";
+        let currentPhone = "";
+        let currentAddress = "";
         
         // Allowed users (Special accounts)
         const allowedUsers = {
@@ -617,6 +562,7 @@
             const authTitle = document.getElementById('authTitle');
             const toggleText = document.getElementById('toggleText');
             const toggleAction = document.getElementById('toggleAction');
+            const loginPhone = document.getElementById('loginPhone');
             const errorMsg = document.getElementById('loginError');
             const successMsg = document.getElementById('registerSuccess');
 
@@ -628,6 +574,7 @@
                 // Switch to Login Mode
                 loginBtn.classList.remove('hidden');
                 signupBtn.classList.add('hidden');
+                loginPhone.classList.add('hidden');
                 authTitle.innerText = "Welcome Back to Dmall Corner";
                 toggleText.innerText = "Don't have an account?";
                 toggleAction.innerText = "Sign Up";
@@ -635,6 +582,7 @@
                 // Switch to Sign Up Mode
                 loginBtn.classList.add('hidden');
                 signupBtn.classList.remove('hidden');
+                loginPhone.classList.remove('hidden');
                 authTitle.innerText = "Create Your Account";
                 toggleText.innerText = "Already have an account?";
                 toggleAction.innerText = "Login";
@@ -642,16 +590,14 @@
         }
 
         function register() {
-            const nameInput = document.getElementById('loginName');
-            const passInput = document.getElementById('loginPassword');
+            const username = document.getElementById('loginName').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const phone = document.getElementById('loginPhone').value.trim();
             const errorMsg = document.getElementById('loginError');
             const successMsg = document.getElementById('registerSuccess');
 
-            const username = nameInput.value.trim();
-            const password = passInput.value.trim();
-
-            if (username === "" || password === "") {
-                errorMsg.innerText = "Username and password cannot be empty.";
+            if (username === "" || password === "" || phone === "") {
+                errorMsg.innerText = "All fields are required.";
                 errorMsg.classList.remove('hidden');
                 return;
             }
@@ -663,8 +609,8 @@
                 return;
             }
 
-            // Save new user
-            storedUsers[username] = password;
+            // Save new user with phone and empty address
+            storedUsers[username] = { password: password, phone: phone, address: "" };
             localStorage.setItem('nescafe_users', JSON.stringify(storedUsers));
 
             // Show success and switch to login
@@ -684,10 +630,22 @@
             const username = nameInput.value.trim();
             const password = passInput.value.trim();
             
-            // Check against allowedUsers OR storedUsers
-            if ((allowedUsers[username] && allowedUsers[username] === password) || 
-                (storedUsers[username] && storedUsers[username] === password)) {
-                
+            let validUser = false;
+
+            // Check allowed users
+            if (allowedUsers[username] && allowedUsers[username] === password) {
+                validUser = true;
+                currentPhone = ""; // Admin/Special users might not have stored phone
+                currentAddress = "";
+            } 
+            // Check stored users
+            else if (storedUsers[username] && storedUsers[username].password === password) {
+                validUser = true;
+                currentPhone = storedUsers[username].phone;
+                currentAddress = storedUsers[username].address || "";
+            }
+
+            if (validUser) {
                 currentUser = username;
                 document.getElementById('userNameDisplay').innerText = `| Hello, ${currentUser}`;
                 
@@ -696,7 +654,6 @@
                 setTimeout(() => {
                     document.getElementById('login-screen').style.display = 'none';
                     document.getElementById('app-content').style.display = 'block';
-                    // Trigger fade in for app content
                     document.getElementById('app-content').classList.add('animate-fade-in');
                 }, 300); 
             } else {
@@ -712,6 +669,35 @@
             }
         }
 
+        // --- PROFILE LOGIC ---
+        function loadProfile() {
+            document.getElementById('profileName').value = currentUser;
+            document.getElementById('profilePhone').value = currentPhone;
+            document.getElementById('profileAddress').value = currentAddress;
+        }
+
+        function saveProfile() {
+            const phone = document.getElementById('profilePhone').value.trim();
+            const address = document.getElementById('profileAddress').value.trim();
+
+            if (!storedUsers[currentUser] && !allowedUsers[currentUser]) return;
+
+            // Update local state
+            currentPhone = phone;
+            currentAddress = address;
+
+            // Update storage if it's a normal user
+            if (storedUsers[currentUser]) {
+                storedUsers[currentUser].phone = phone;
+                storedUsers[currentUser].address = address;
+                localStorage.setItem('nescafe_users', JSON.stringify(storedUsers));
+            }
+
+            const msg = document.getElementById('profileMessage');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3000);
+        }
+
         // --- CART LOGIC ---
         let cart = [];
 
@@ -722,7 +708,7 @@
             // Visual feedback - Show Toast
             showToast(`${name} added to cart!`);
             
-            // Visual feedback - Button scale (if button passed, but we don't pass it, so ignore)
+            // Visual feedback - Button scale
             const cartBtn = document.querySelector('button[onclick="toggleCart()"]');
             cartBtn.classList.add('scale-125', 'text-yellow-400');
             setTimeout(() => cartBtn.classList.remove('scale-125', 'text-yellow-400'), 200);
@@ -746,21 +732,12 @@
         }
 
         function updateCartUI() {
-            // Update Badge
             document.getElementById('cartCount').innerText = cart.length;
-
-            // Update Modal Content
             const container = document.getElementById('cartItemsContainer');
             const totalDisplay = document.getElementById('cartTotal');
             
             if (cart.length === 0) {
-                container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-cart-x mb-2" viewBox="0 0 16 16">
-                      <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
-                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
-                    </svg>
-                    <p>Your cart is empty.</p>
-                </div>`;
+                container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-gray-400"><p>Your cart is empty.</p></div>`;
                 totalDisplay.innerText = "₹0";
                 return;
             }
@@ -771,17 +748,12 @@
             cart.forEach((item, index) => {
                 total += item.price;
                 html += `
-                <div class="flex justify-between items-center bg-gray-50 p-3 rounded shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center bg-gray-50 p-3 rounded shadow-sm border border-gray-100 mb-2">
                     <div>
                         <h4 class="font-bold text-stone-800">${item.name}</h4>
                         <span class="text-sm text-gray-500">₹${item.price}</span>
                     </div>
-                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                        </svg>
-                    </button>
+                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 p-1">&times;</button>
                 </div>
                 `;
             });
@@ -796,7 +768,6 @@
             
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
-                // Small delay to allow display:block to apply before transform
                 setTimeout(() => {
                     content.classList.remove('translate-x-full');
                 }, 10);
@@ -814,7 +785,26 @@
                 return;
             }
 
-            let message = `*New Order from ${currentUser || "Guest"}*\n\n`;
+            // Get Order Type
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+
+            // Check if Delivery is selected but no address provided
+            if (orderType === "Delivery" && (!currentAddress || currentAddress.trim() === "")) {
+                alert("Please add your Delivery Address in your Profile first!");
+                showPage('profile');
+                toggleCart(); // Close cart
+                return;
+            }
+
+            let message = `*New Order (${orderType})*\n`;
+            message += `*Customer:* ${currentUser}\n`;
+            message += `*Phone:* ${currentPhone || "Not Provided"}\n`;
+            
+            if (orderType === "Delivery") {
+                message += `*Address:* ${currentAddress}\n`;
+            }
+            
+            message += `\n*Items:*\n`;
             let total = 0;
             
             cart.forEach(item => {
@@ -836,14 +826,9 @@
         function sendFeedback() {
             const name = document.getElementById('contactName').value;
             const message = document.getElementById('contactMessage').value;
-            
-            // I've assumed a Gmail address. Change this string if your email provider is different!
             const emailReceiver = "suliemangoluguri@gmail.com"; 
-            
             const subject = encodeURIComponent(`Feedback from ${name} - Dmall Nescafé`);
             const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
-            
-            // Open default mail client
             window.location.href = `mailto:${emailReceiver}?subject=${subject}&body=${body}`;
         }
 
@@ -864,6 +849,11 @@
                 }
             });
             window.scrollTo(0, 0);
+
+            // If navigating to profile, load data
+            if (pageId === 'profile') {
+                loadProfile();
+            }
         }
 
         function toggleMobileMenu() {
